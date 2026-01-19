@@ -8,18 +8,18 @@
 }
 
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, sans-serif;
   background-color: #f5f5f5;
   color: #333;
   line-height: 1.6;
 }
 
 /* --------------------
-   Header Styles
+   Header
 -------------------- */
 header {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: #fff;
+  color: white;
   text-align: center;
   padding: 2.5rem 1rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
@@ -32,20 +32,52 @@ header h1 {
 
 header p {
   font-size: 1.1rem;
-  opacity: 0.95;
 }
 
 /* --------------------
-   Main Container
+   Main
 -------------------- */
 main {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: auto;
   padding: 2rem 1rem;
 }
 
 /* --------------------
-   Recipe Container
+   Controls
+-------------------- */
+.controls {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.filters,
+.sorting {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.controls button {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: none;
+  background-color: #667eea;
+  color: white;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.controls button:hover {
+  background-color: #5a67d8;
+}
+
+/* --------------------
+   Recipe Grid
 -------------------- */
 #recipe-container {
   display: flex;
@@ -58,7 +90,7 @@ main {
    Recipe Card
 -------------------- */
 .recipe-card {
-  background: #ffffff;
+  background: white;
   border-radius: 12px;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
   padding: 1.5rem;
@@ -72,9 +104,8 @@ main {
 }
 
 .recipe-card h3 {
-  font-size: 1.3rem;
-  color: #333;
   margin-bottom: 0.75rem;
+  font-size: 1.3rem;
 }
 
 /* --------------------
@@ -82,10 +113,10 @@ main {
 -------------------- */
 .recipe-meta {
   display: flex;
-  align-items: center;
   gap: 0.75rem;
   margin-bottom: 1rem;
   font-size: 0.9rem;
+  align-items: center;
 }
 
 .recipe-card p {
