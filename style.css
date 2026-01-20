@@ -1,128 +1,311 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* ---------- RESET ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-body {
-  font-family: "Segoe UI", Tahoma, sans-serif;
-  background-color: #f5f5f5;
-  color: #333;
-}
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+      line-height: 1.6;
+    }
 
-/* Header */
-header {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  color: white;
-  text-align: center;
-  padding: 2.5rem 1rem;
-}
+    /* ---------- HEADER ---------- */
+    header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
 
-/* Main */
-main {
-  max-width: 1200px;
-  margin: auto;
-  padding: 2rem 1rem;
-}
+    header h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.4rem;
+    }
 
-/* Controls */
-.controls {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
+    /* ---------- CONTROLS ---------- */
+    .controls {
+      max-width: 1200px;
+      margin: 1.5rem auto;
+      padding: 0 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+    }
 
-.filters,
-.sorting {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
+    .controls input,
+    .controls button {
+      padding: 0.5rem 0.8rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      background: white;
+    }
 
-.controls button {
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  border: none;
-  background-color: #667eea;
-  color: white;
-  font-size: 0.85rem;
-  cursor: pointer;
-}
+    .controls button.active {
+      background: #667eea;
+      color: white;
+      border-color: #667eea;
+    }
 
-.controls button:hover {
-  background-color: #5a67d8;
-}
+    /* ---------- MAIN ---------- */
+    main {
+      max-width: 1200px;
+      margin: auto;
+      padding: 1rem;
+    }
 
-/* Grid */
-#recipe-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  justify-content: center;
-}
+    #counter {
+      text-align: center;
+      margin-bottom: 1rem;
+      font-weight: bold;
+    }
 
-/* Card */
-.recipe-card {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-  padding: 1.5rem;
-  width: 300px;
-  transition: transform 0.3s ease;
-}
+    #recipe-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
 
-.recipe-card:hover {
-  transform: translateY(-5px);
-}
+    /* ---------- CARD ---------- */
+    .recipe-card {
+      background: white;
+      width: 300px;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+    }
 
-.recipe-meta {
-  display: flex;
-  gap: 0.75rem;
-  margin-bottom: 0.75rem;
-  font-size: 0.9rem;
-}
+    .recipe-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+    }
 
-/* Difficulty */
-.difficulty {
-  padding: 0.25rem 0.6rem;
-  border-radius: 999px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: capitalize;
-}
+    .recipe-meta {
+      display: flex;
+      gap: 0.5rem;
+      margin: 0.5rem 0;
+      align-items: center;
+    }
 
-.easy { background: #d4edda; color: #155724; }
-.medium { background: #fff3cd; color: #856404; }
-.hard { background: #f8d7da; color: #721c24; }
+    /* ---------- BADGES ---------- */
+    .difficulty {
+      padding: 0.25rem 0.6rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      text-transform: capitalize;
+    }
 
-/* Expandable */
-.recipe-actions {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 1rem;
-}
+    .easy { background: #d4edda; color: #155724; }
+    .medium { background: #fff3cd; color: #856404; }
+    .hard { background: #f8d7da; color: #721c24; }
 
-.recipe-actions button {
-  background: #764ba2;
-  color: white;
-  border: none;
-  padding: 0.4rem 0.8rem;
-  border-radius: 16px;
-  font-size: 0.75rem;
-  cursor: pointer;
-}
+    /* ---------- FAVORITE ---------- */
+    .favorite {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      font-size: 1.3rem;
+    }
 
-.recipe-details {
-  margin-top: 1rem;
-  font-size: 0.85rem;
-}
+    .favorite.active {
+      color: red;
+    }
 
-.recipe-details ul {
-  margin-left: 1.2rem;
-}
+    /* ---------- DETAILS ---------- */
+    .recipe-details {
+      margin-top: 1rem;
+      padding: 0.75rem 1rem;
+      background: #fafafa;
+      border-left: 4px solid #667eea;
+      border-radius: 8px;
+      font-size: 0.85rem;
+    }
 
-.hidden {
-  display: none;
-}
+    .recipe-details ul {
+      margin-left: 1.2rem;
+    }
+
+    .recipe-details ul ul {
+      margin-left: 1.2rem;
+      list-style-type: circle;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .btn {
+      margin-top: 0.5rem;
+      padding: 0.4rem 0.6rem;
+      border-radius: 6px;
+      border: none;
+      background: #667eea;
+      color: white;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }    /* ---------- RESET ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* ---------- HEADER ---------- */
+    header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.4rem;
+    }
+
+    /* ---------- CONTROLS ---------- */
+    .controls {
+      max-width: 1200px;
+      margin: 1.5rem auto;
+      padding: 0 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+
+    .controls input,
+    .controls button {
+      padding: 0.5rem 0.8rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      background: white;
+    }
+
+    .controls button.active {
+      background: #667eea;
+      color: white;
+      border-color: #667eea;
+    }
+
+    /* ---------- MAIN ---------- */
+    main {
+      max-width: 1200px;
+      margin: auto;
+      padding: 1rem;
+    }
+
+    #counter {
+      text-align: center;
+      margin-bottom: 1rem;
+      font-weight: bold;
+    }
+
+    #recipe-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    /* ---------- CARD ---------- */
+    .recipe-card {
+      background: white;
+      width: 300px;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+    }
+
+    .recipe-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+    }
+
+    .recipe-meta {
+      display: flex;
+      gap: 0.5rem;
+      margin: 0.5rem 0;
+      align-items: center;
+    }
+
+    /* ---------- BADGES ---------- */
+    .difficulty {
+      padding: 0.25rem 0.6rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      text-transform: capitalize;
+    }
+
+    .easy { background: #d4edda; color: #155724; }
+    .medium { background: #fff3cd; color: #856404; }
+    .hard { background: #f8d7da; color: #721c24; }
+
+    /* ---------- FAVORITE ---------- */
+    .favorite {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      font-size: 1.3rem;
+    }
+
+    .favorite.active {
+      color: red;
+    }
+
+    /* ---------- DETAILS ---------- */
+    .recipe-details {
+      margin-top: 1rem;
+      padding: 0.75rem 1rem;
+      background: #fafafa;
+      border-left: 4px solid #667eea;
+      border-radius: 8px;
+      font-size: 0.85rem;
+    }
+
+    .recipe-details ul {
+      margin-left: 1.2rem;
+    }
+
+    .recipe-details ul ul {
+      margin-left: 1.2rem;
+      list-style-type: circle;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .btn {
+      margin-top: 0.5rem;
+      padding: 0.4rem 0.6rem;
+      border-radius: 6px;
+      border: none;
+      background: #667eea;
+      color: white;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
